@@ -9,13 +9,15 @@ int nth_prime(int n) {
   if (n == 1) {
     return 2;
   }
+
   // skipping 2
   n--;
+  
   float c = (n < 5000) ? 1.3 : 1.15; // constant for next step
+
   // nth prime will be before this #
   // we're dividing by 2 because we're not going to test evens
-  int max_val = ceil(c * n * log(n));
-  int max_index = max_val / 2;
+  int max_index = ceil(c * n * log(n)) / 2;
 
   // allocated 1 byte for each num we're testing. sets all to 0
   // calloc is (can be?) faster than allocating memory then zeroing
@@ -41,13 +43,12 @@ int nth_prime(int n) {
 
   char* p = nums;
 
-  for ( ; n >= 0; n--) {
+  for ( ; n > 0; n--) {
     while (*nums != 0) {
       nums += 1;
     }
     nums += 1;
   }
-  nums -= 1;
 
   free(p);
   return 2 * ((nums - p) + 1) + 1;
