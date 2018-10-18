@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
+
+//odds only
 int nth_prime(int n) {
   if (n == 1) {
     return 2;
@@ -47,9 +49,11 @@ int nth_prime(int n) {
   }
   nums -= 1;
 
+  free(p);
   return 2 * ((nums - p) + 1) + 1;
 }
 
+// keeps evens
 int old_nth_prime(int n) {
   float c = (n < 5000) ? 1.3 : 1.15;
   int max_index = ceil(c * n * log(n));
@@ -86,7 +90,7 @@ int old_nth_prime(int n) {
 
 int main() {
   //printf("2000000th prime: %d\n", old_nth_prime(2000000)); // 0.620 seconds
-  printf("2000000th prime: %d\n", nth_prime(2000000)); // 0.323 on MacBook, 0.265 on Stuy computer 
+  printf("2000000th prime: %d\n", nth_prime(2000000)); // 0.323 on MacBook, 0.265 on Stuy computer
 
   return 0;
 }
