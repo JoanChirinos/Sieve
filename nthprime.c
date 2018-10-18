@@ -23,6 +23,9 @@ int nth_prime(int n) {
   // calloc is (can be?) faster than allocating memory then zeroing
   char* nums = calloc(sizeof(char), max_index);
 
+  int pcounter = 0;
+  char* current_prime = NULL;
+
   // starting at index 0
   int i_at = 0;
 
@@ -39,19 +42,25 @@ int nth_prime(int n) {
         if (!(*(x))) *x = 1;
       }
     }
+
+    // else store index as pcounter-th prime
+    else {
+      pcounter++;
+      current_prime = nums + i_at;
+    }
   }
 
-  char* p = nums;
+  n -= pcounter;
 
   for ( ; n > 0; n--) {
-    while (*nums != 0) {
-      nums += 1;
+    while (*current_prime != 0) {
+      current_prime += 1;
     }
-    nums += 1;
+    current_prime += 1;
   }
 
-  free(p);
-  return 2 * ((nums - p) + 1) + 1;
+  free(nums);
+  return 2 * ((current_prime - nums) + 1) + 1;
 }
 
 // keeps evens
