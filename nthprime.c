@@ -12,7 +12,7 @@ int nth_prime(int n) {
 
   // skipping 2
   n--;
-  
+
   float c = (n < 5000) ? 1.3 : 1.15; // constant for next step
 
   // nth prime will be before this #
@@ -91,7 +91,7 @@ int old_nth_prime(int n) {
 
 int main() {
   //printf("2000000th prime: %d\n", old_nth_prime(2000000)); // 0.620 seconds
-  printf("2000000th prime: %d\n", nth_prime(2000000)); // 0.323 on MacBook, 0.265 on Stuy computer
+  printf("2000000th prime: %d\n", nth_prime(2000000)); // 0.323 on MacBook, 0.260 on Stuy computer
 
   return 0;
 }
