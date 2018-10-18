@@ -86,7 +86,7 @@ int old_nth_prime(int n) {
 
 int main() {
   //printf("2000000th prime: %d\n", old_nth_prime(2000000)); // 0.620 seconds
-  printf("2000000th prime: %d\n", nth_prime(2000000)); // 0.323 
+  printf("2000000th prime: %d\n", nth_prime(2000000)); // 0.323 on MacBook, 0.265 on Stuy computer 
 
   return 0;
 }
