@@ -115,6 +115,7 @@
 //   return 0;
 // }
 
+// avg time: 0.247 s on Stuy computer
 //odds only
 int sieve(int n) {
   if (n == 1) {
@@ -143,37 +144,21 @@ int sieve(int n) {
   // starting at index 0
   int i_at = 0;
 
+  int prime_counter = 1;
+  char* current_prime = nums;
+
   // traversing through indices till we get to sqrt(max_index)
   for ( ; i_at * i_at <= max_index; i_at++) {
-    // printf("i_at: %d\n", i_at);
-    // printf("value: %d\n", 2 * (i_at + 1) + 1);
-
-    // if the num stored at i_at is prime
     if (!(*(nums + i_at))) {
-      // printf("=== PRIME ===\n");
+      prime_counter++;
+      current_prime = nums + i_at;
       int hop_by = 2 * (i_at + 1) + 1;
-      // printf("hopping by: %d\n", hop_by);
       char* x = nums + i_at + hop_by;
-      // printf("starting at value: %ld\n", 2 * (x - nums + 1) + 1);
       char* stop = nums + max_index;
       for ( ; x < stop; x += hop_by) {
-        // printf("testing at index: %ld\n", x - nums);
-        // printf("which has value: %ld\n", 2 * (x - nums + 1) + 1);
-        if (!(*(x))) {
-          *x = 1;
-          // printf("\tmarked as prime!\n");
-        }
-        else {
-          // printf("\tthis was already marked as prime!\n");
-        }
+        if (!(*(x))) *x = 1;
       }
     }
-
-    // else index is pcounter-th prime
-    // else {
-    //   pcounter++;
-    //   current_prime = nums + i_at;
-    // }
   }
 
   // n -= pcounter;
@@ -188,14 +173,19 @@ int sieve(int n) {
   // free(nums);
   // return 2 * ((current_prime - nums) + 1) + 1;
 
-  int pcounter = 0;
-  char* p_at = nums;
-  while (pcounter < n) {
-    if (!(*p_at)) pcounter++;
-    p_at++;
+  // int pcounter = 0;
+  // char* p_at = nums;
+  // while (pcounter < n) {
+  //   if (!(*p_at)) pcounter++;
+  //   p_at++;
+  // }
+
+  while (prime_counter < n) {
+    if (!(*current_prime)) prime_counter++;
+    current_prime++;
   }
 
-  return 2 * (p_at - nums) + 1;
+  return 2 * (current_prime - nums) + 1;
 }
 
 // keeps evens
