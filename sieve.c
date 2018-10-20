@@ -115,7 +115,7 @@
 //   return 0;
 // }
 
-// avg time: 0.247 s on Stuy computer
+// avg time: 0.245 s on Stuy computer
 //odds only
 int sieve(int n) {
   if (n == 1) {
@@ -136,22 +136,20 @@ int sieve(int n) {
   // calloc is (can be?) faster than allocating memory then zeroing
   char* nums = calloc(sizeof(char), max_index);
 
-  // using this so we don't have to count from the beginning
-  // interesting --> this doesn't make it faster...
-  // int pcounter = 0;
-  // char* current_prime = NULL;
-
   // starting at index 0
   int i_at = 0;
 
-  int prime_counter = 1;
+  int prime_counter = 0;
   char* current_prime = nums;
 
   // traversing through indices till we get to sqrt(max_index)
   for ( ; i_at * i_at <= max_index; i_at++) {
     if (!(*(nums + i_at))) {
       prime_counter++;
+      // printf("prime_counter: %d\n", prime_counter);
       current_prime = nums + i_at;
+      // printf("current prime index: %ld\n", nums - current_prime);
+      // printf("current prime valule: %ld\n", 2 * (current_prime - nums + 1) + 1);
       int hop_by = 2 * (i_at + 1) + 1;
       char* x = nums + i_at + hop_by;
       char* stop = nums + max_index;
@@ -161,31 +159,12 @@ int sieve(int n) {
     }
   }
 
-  // n -= pcounter;
-  //
-  // for ( ; n > 0; n--) {
-  //   while (*current_prime != 0) {
-  //     current_prime += 1;
-  //   }
-  //   current_prime += 1;
-  // }
-  //
-  // free(nums);
-  // return 2 * ((current_prime - nums) + 1) + 1;
-
-  // int pcounter = 0;
-  // char* p_at = nums;
-  // while (pcounter < n) {
-  //   if (!(*p_at)) pcounter++;
-  //   p_at++;
-  // }
-
   while (prime_counter < n) {
     if (!(*current_prime)) prime_counter++;
     current_prime++;
   }
 
-  return 2 * (current_prime - nums) + 1;
+  return 2 * (current_prime - nums + 1) + 1;
 }
 
 // keeps evens
