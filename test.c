@@ -37,14 +37,36 @@ int main() {
   //   printf("\n");
   // }
 
-  char x = 11;
-  char counter = 0;
-  char bit_count;
-  for (bit_count = 0; bit_count < 8; bit_count++) {
-    if (!(x & 1<<(7 - bit_count))) counter++;
-  }
+  // char x = 11;
+  // char counter = 0;
+  // char bit_count;
+  // for (bit_count = 0; bit_count < 8; bit_count++) {
+  //   if (!(x & 1<<(7 - bit_count))) counter++;
+  // }
+  //
+  // printf("%d has %d primes\n", x, counter);
+  //
+  // return 0;
 
-  printf("%d has %d primes\n", x, counter);
-
-  return 0;
+  // 1.920 s w/o lookup for a huge num
+  // 1.808 s w/ lookup for a huge num
+  // int h;
+  // // char* lookup = calloc(sizeof(char), 8);
+  // int times = 0;
+  // int i;
+  // // for (i = 0; i < 8; i++) {
+  // //   *(lookup + i) = 1<<(7 - i);
+  // // }
+  // char x = 112;
+  // for ( ; times < 2000000; times++) {
+  //   for (i = 0; i < 8; i++) {
+  //     if (!(x & 1<<(7 - i))) {
+  //       h = 5;
+  //     }
+  //     // if (!(x & *(lookup + i))) {
+  //     //   h = 5;
+  //     // }
+  //   }
+  // }
+  // return 0;
 }
