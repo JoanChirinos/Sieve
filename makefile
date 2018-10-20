@@ -5,7 +5,7 @@ run:
 	./a.out $(args)
 
 clean:
-	-rm -f /a.out *.o
+	-rm -f ./a.out *.o
 
 sieve.o:
 	gcc -c sieve.c
