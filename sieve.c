@@ -86,53 +86,53 @@ int sieve(int n) {
 
   // ^ this is doing it right
 
-  // int prime_counter = 0;
-  // char* prime_char_at = nums;
-  // int prime_bit_at = 0;
-  // while (prime_counter <= n) {
-  //   while(*prime_char_at & *(bit_shift_lookup_table + prime_bit_at)) {
-  //     // printf("%d, %d --> %d --> is not prime\n", prime_char_at - nums, prime_bit_at, 2 * ((prime_char_at - nums) * 8 + prime_bit_at + 1) + 1);
-  //     prime_bit_at++;
-  //     if (prime_bit_at == 8) {
-  //       prime_bit_at = 0;
-  //       prime_char_at++;
-  //     }
-  //   }
-  //   // printf("%d, %d --> %d --> is prime\n", prime_char_at - nums, prime_bit_at, 2 * ((prime_char_at - nums) * 8 + prime_bit_at + 1) + 1);
-  //   prime_counter++;
-  //   if (prime_counter == n) break;
-  //   // printf("prime_counter is now %d\n", prime_counter);
-  //   prime_bit_at++;
-  //   if (prime_bit_at == 8) {
-  //     prime_bit_at = 0;
-  //     prime_char_at++;
-  //   }
-  // }
-
-  // printf("we got to the counter\n");
   int prime_counter = 0;
   char* prime_char_at = nums;
-  while (prime_counter < n) {
-    prime_counter += *(lookup_table + *prime_char_at + 128);
-    prime_char_at++;
-  }
-  printf("prime_counter: %d\n", prime_counter);
-  prime_counter -= *(lookup_table + *prime_char_at + 128);
-  printf("prime_counter: %d\n", prime_counter);
-  printf("*prime_char_at: %d\n", *prime_char_at);
-
-  while (prime_counter >= n) {
-    prime_counter -= *(lookup_table + *prime_char_at + 128);
-    prime_char_at--;
-  }
-
-  printf("prime_counter: %d\n", prime_counter);
-
-  char prime_bit_at = 0;
-  while (prime_counter < n) {
-    if (!(*prime_char_at & *(bit_shift_lookup_table + prime_bit_at))) prime_counter++;
+  int prime_bit_at = 0;
+  while (prime_counter <= n) {
+    while(*prime_char_at & *(bit_shift_lookup_table + prime_bit_at)) {
+      // printf("%d, %d --> %d --> is not prime\n", prime_char_at - nums, prime_bit_at, 2 * ((prime_char_at - nums) * 8 + prime_bit_at + 1) + 1);
+      prime_bit_at++;
+      if (prime_bit_at == 8) {
+        prime_bit_at = 0;
+        prime_char_at++;
+      }
+    }
+    // printf("%d, %d --> %d --> is prime\n", prime_char_at - nums, prime_bit_at, 2 * ((prime_char_at - nums) * 8 + prime_bit_at + 1) + 1);
+    prime_counter++;
+    if (prime_counter == n) break;
+    // printf("prime_counter is now %d\n", prime_counter);
     prime_bit_at++;
+    if (prime_bit_at == 8) {
+      prime_bit_at = 0;
+      prime_char_at++;
+    }
   }
+
+  // printf("we got to the counter\n");
+  // int prime_counter = 0;
+  // char* prime_char_at = nums;
+  // while (prime_counter < n) {
+  //   prime_counter += *(lookup_table + *prime_char_at + 128);
+  //   prime_char_at++;
+  // }
+  // printf("prime_counter: %d\n", prime_counter);
+  // prime_counter -= *(lookup_table + *prime_char_at + 128);
+  // printf("prime_counter: %d\n", prime_counter);
+  // printf("*prime_char_at: %d\n", *prime_char_at);
+  //
+  // while (prime_counter >= n) {
+  //   prime_counter -= *(lookup_table + *prime_char_at + 128);
+  //   prime_char_at--;
+  // }
+  //
+  // printf("prime_counter: %d\n", prime_counter);
+  //
+  // char prime_bit_at = 0;
+  // while (prime_counter < n) {
+  //   if (!(*prime_char_at & *(bit_shift_lookup_table + prime_bit_at))) prime_counter++;
+  //   prime_bit_at++;
+  // }
 
   // return 0;
   return 2 * ((prime_char_at - nums) * 8 + prime_bit_at + 1) + 1;
